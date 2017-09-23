@@ -51,12 +51,18 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Domain\PlayerType.cs" />
+    <Compile Include="Domain\Data\BallData.cs" />
     <Compile Include="Domain\Decision\Decider.cs" />
+    <Compile Include="Domain\Decision\Tactical\GoForTheBall.cs" />
     <Compile Include="Domain\IO\Accelerate.cs" />
     <Compile Include="Domain\IO\ForwardBackwardRotation.cs" />
     <Compile Include="Domain\IO\InputParameters.cs" />
     <Compile Include="Domain\IO\OutputParameters.cs" />
     <Compile Include="Domain\IO\Turn.cs" />
+    <Compile Include="Domain\Manouvre\IManouvre.cs" />
+    <Compile Include="Domain\Manouvre\TurnTowards.cs" />
+    <Compile Include="Domain\Data\PlayerData.cs" />
     <Compile Include="Infrastructure\PricklesNetBotAutofacModule.cs" />
     <Compile Include="Infrastructure\RocketLeagueInputHandler.cs" />
     <Compile Include="Program.cs" />
@@ -66,5 +72,6 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -12,24 +12,32 @@
         public double BallYVelocity => values[5];
         public double BallZVelocity => values[4];
 
-        public double BlueXPosition => values[7];
-        public double BlueYPosition => values[6];
-        public double BlueZPosition => values[8];
+        public double Blue1XPosition => values[7];
+        public double Blue1YPosition => values[6];
+        public double Blue1ZPosition => values[8];
 
-        public double OrangeXPosition => values[10];
-        public double OrangeYPosition => values[9];
-        public double OrangeZPosition => values[11];
+        public double Orange1XPosition => values[10];
+        public double Orange1YPosition => values[9];
+        public double Orange1ZPosition => values[11];
 
-        public double BlueXVelocity => values[12];
-        public double BlueYVelocity => values[14];
-        public double BlueZVelocity => values[13];
+        public double Blue1XVelocity => values[12];
+        public double Blue1YVelocity => values[14];
+        public double Blue1ZVelocity => values[13];
 
-        public double OrangeXVelocity => values[15];
-        public double OrangeYVelocity => values[16];
-        public double OrangeZVelocity => values[17];
+        public double Orange1XVelocity => values[15];
+        public double Orange1YVelocity => values[16];
+        public double Orange1ZVelocity => values[17];
 
-        public double BlueBoost => values[18];
-        public double OrangeBoost => values[19];
+        public double Blue1Boost => values[18];
+        public double Orange1Boost => values[19];
+
+        public double Blue1Roll => values[20];
+        public double Blue1Pitch => values[21];
+        public double Blue1Yaw => values[22];
+
+        public double Orange1Roll => values[23];
+        public double Orange1Pitch => values[24];
+        public double Orange1Yaw => values[25];
 
         public InputParameters(double[] values)
         {
