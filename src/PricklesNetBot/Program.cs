@@ -4,7 +4,7 @@ using System;
 using WebSocketSharp;
 using WebSocketSharp.Server;
 
-namespace Test
+namespace PricklesNetBot
 {
     class Program
     {
