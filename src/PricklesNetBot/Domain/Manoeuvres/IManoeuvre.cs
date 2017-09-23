@@ -1,8 +1,8 @@
 ﻿using PricklesNetBot.Domain.Data;
 
-namespace PricklesNetBot.Domain.Manouvre
+namespace PricklesNetBot.Domain.Manoeuvre
 {
-    public interface IManouvre
+    public interface IManoeuvre
     {
         int EstimateCompletionTime(PlayerData forPlayer, BallData ballData);
 

@@ -1,9 +1,9 @@
 ﻿using System;
 using PricklesNetBot.Domain.Data;
 
-namespace PricklesNetBot.Domain.Manouvre
+namespace PricklesNetBot.Domain.Manoeuvre
 {
-    public class TurnTowards : IManouvre
+    public class TurnTowards : IManoeuvre
     {
         public int EstimateCompletionTime(PlayerData forPlayer, BallData ballData)
         {
