@@ -7,7 +7,6 @@ namespace PricklesNetBot.Infrastructure
     {
         protected override void Load(ContainerBuilder builder)
         {
-            builder.RegisterType<Decider>().AsSelf();
             builder.RegisterType<RocketLeagueHandler>().AsSelf();
         }
     }

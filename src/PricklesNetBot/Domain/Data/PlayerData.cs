@@ -7,13 +7,11 @@ namespace PricklesNetBot.Domain.Data
     {
         private readonly InputParameters input;
 
-        public PlayerType PlayerType { get; }
-
         public double XVelocity
         {
             get
             {
-                switch (PlayerType)
+                switch (input.CurrentPlayer)
                 {
                     case PlayerType.Blue1:
                         return input.Blue1XVelocity;
@@ -29,7 +27,7 @@ namespace PricklesNetBot.Domain.Data
         {
             get
             {
-                switch (PlayerType)
+                switch (input.CurrentPlayer)
                 {
                     case PlayerType.Blue1:
                         return input.Blue1YVelocity;
@@ -45,7 +43,7 @@ namespace PricklesNetBot.Domain.Data
         {
             get
             {
-                switch (PlayerType)
+                switch (input.CurrentPlayer)
                 {
                     case PlayerType.Blue1:
                         return input.Blue1ZVelocity;
@@ -61,7 +59,7 @@ namespace PricklesNetBot.Domain.Data
         {
             get
             {
-                switch (PlayerType)
+                switch (input.CurrentPlayer)
                 {
                     case PlayerType.Blue1:
                         return input.Blue1XPosition;
@@ -77,7 +75,7 @@ namespace PricklesNetBot.Domain.Data
         {
             get
             {
-                switch (PlayerType)
+                switch (input.CurrentPlayer)
                 {
                     case PlayerType.Blue1:
                         return input.Blue1YPosition;
@@ -93,7 +91,7 @@ namespace PricklesNetBot.Domain.Data
         {
             get
             {
-                switch (PlayerType)
+                switch (input.CurrentPlayer)
                 {
                     case PlayerType.Blue1:
                         return input.Blue1ZPosition;
@@ -109,7 +107,7 @@ namespace PricklesNetBot.Domain.Data
         {
             get
             {
-                switch (PlayerType)
+                switch (input.CurrentPlayer)
                 {
                     case PlayerType.Blue1:
                         return input.Blue1Pitch;
@@ -125,7 +123,7 @@ namespace PricklesNetBot.Domain.Data
         {
             get
             {
-                switch (PlayerType)
+                switch (input.CurrentPlayer)
                 {
                     case PlayerType.Blue1:
                         return input.Blue1Yaw;
@@ -141,7 +139,7 @@ namespace PricklesNetBot.Domain.Data
         {
             get
             {
-                switch (PlayerType)
+                switch (input.CurrentPlayer)
                 {
                     case PlayerType.Blue1:
                         return input.Blue1Roll;
@@ -157,7 +155,7 @@ namespace PricklesNetBot.Domain.Data
         {
             get
             {
-                switch (PlayerType)
+                switch (input.CurrentPlayer)
                 {
                     case PlayerType.Blue1:
                         return input.Blue1Boost;
@@ -169,11 +167,9 @@ namespace PricklesNetBot.Domain.Data
             }
         }
 
-        public PlayerData(InputParameters input, PlayerType playerType)
+        public PlayerData(InputParameters input)
         {
             this.input = input;
-
-            PlayerType = playerType;
         }
     }
 }

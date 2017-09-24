@@ -1,4 +1,7 @@
-﻿namespace PricklesNetBot.Domain.IO
+﻿using PricklesNetBot.Infrastructure;
+using System;
+
+namespace PricklesNetBot.Domain.IO
 {
     public class InputParameters
     {
@@ -31,13 +34,15 @@
         public double Blue1Boost => values[18];
         public double Orange1Boost => values[19];
 
-        public double Blue1Roll => values[20];
-        public double Blue1Pitch => values[21];
-        public double Blue1Yaw => values[22];
+        public double Blue1Roll => values[20].FromRadiansToDegrees();
+        public double Blue1Pitch => values[21].FromRadiansToDegrees();
+        public double Blue1Yaw => values[22].FromRadiansToDegrees();
 
-        public double Orange1Roll => values[23];
-        public double Orange1Pitch => values[24];
-        public double Orange1Yaw => values[25];
+        public double Orange1Roll => values[23].FromRadiansToDegrees();
+        public double Orange1Pitch => values[24].FromRadiansToDegrees();
+        public double Orange1Yaw => values[25].FromRadiansToDegrees();
+
+        public PlayerType CurrentPlayer => values[26] == 1 ? PlayerType.Blue1 : PlayerType.Orange1;
 
         public InputParameters(double[] values)
         {

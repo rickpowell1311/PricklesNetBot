@@ -18,9 +18,9 @@ namespace PricklesNetBot.Domain.IO
                 return new OutputParameters(
                     Turn.None,
                     ForwardBackwardRotation.None,
-                    Accelerate.Forward,
+                    Accelerate.None,
                     false,
-                    true,
+                    false,
                     false);
             }
         }
@@ -31,8 +31,8 @@ namespace PricklesNetBot.Domain.IO
             {
                 (int)turn,
                 (int)fbRotation,
-                accelerate != Accelerate.Backward ? (int)accelerate : 0,
-                accelerate != Accelerate.Forward ? (int)accelerate : 0,
+                accelerate.ForwardValue,
+                accelerate.BackwardValue,
                 jump ? 1 : 0,
                 boost ? 1 : 0,
                 powerslide ? 1 : 0

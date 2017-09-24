@@ -51,6 +51,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Domain\Decision\Tactical\ITacticalDecision.cs" />
+    <Compile Include="Domain\Manoeuvres\IManoeuvre.cs" />
+    <Compile Include="Domain\Manoeuvres\ManoeuvreProgress.cs" />
+    <Compile Include="Domain\Manoeuvres\TurnTowardsTheBall.cs" />
     <Compile Include="Domain\PlayerType.cs" />
     <Compile Include="Domain\Data\BallData.cs" />
     <Compile Include="Domain\Decision\Decider.cs" />
@@ -60,9 +64,9 @@
     <Compile Include="Domain\IO\InputParameters.cs" />
     <Compile Include="Domain\IO\OutputParameters.cs" />
     <Compile Include="Domain\IO\Turn.cs" />
-    <Compile Include="Domain\Manouvre\IManouvre.cs" />
-    <Compile Include="Domain\Manouvre\TurnTowards.cs" />
     <Compile Include="Domain\Data\PlayerData.cs" />
+    <Compile Include="Domain\Vector.cs" />
+    <Compile Include="Infrastructure\DoubleExtensions.cs" />
     <Compile Include="Infrastructure\PricklesNetBotAutofacModule.cs" />
     <Compile Include="Infrastructure\RocketLeagueInputHandler.cs" />
     <Compile Include="Program.cs" />

@@ -1,18 +1,21 @@
 ﻿using Newtonsoft.Json;
+using PricklesNetBot.Domain;
 using PricklesNetBot.Domain.Decision;
 using PricklesNetBot.Domain.IO;
-using System;
+using System.Collections.Generic;
 using System.Text;
 
 namespace PricklesNetBot.Infrastructure
 {
     public class RocketLeagueHandler
     {
-        private readonly Decider decider;
+        private readonly Dictionary<PlayerType, Decider> deciders;
 
-        public RocketLeagueHandler(Decider decider)
+        public RocketLeagueHandler()
         {
-            this.decider = decider;
+            deciders = new Dictionary<PlayerType, Decider>();
+            deciders.Add(PlayerType.Blue1, new Decider());
+            deciders.Add(PlayerType.Orange1, new Decider());
         }
 
         public byte[] Handle(byte[] input)
@@ -21,7 +24,10 @@ namespace PricklesNetBot.Infrastructure
             var values = JsonConvert.DeserializeObject<double[]>(raw);
             var parameters = new InputParameters(values);
 
+            var decider = deciders[parameters.CurrentPlayer];
+
             var output = decider.MakeMove(parameters);
+
             var outputRaw = JsonConvert.SerializeObject(output.AsResult());
             return Encoding.UTF8.GetBytes(outputRaw);
         }

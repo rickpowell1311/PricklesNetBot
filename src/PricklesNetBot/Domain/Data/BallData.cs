@@ -6,6 +6,8 @@ namespace PricklesNetBot.Domain.Data
     {
         private readonly InputParameters input;
 
+        public const double Diameter = 5;
+
         public double BallXPosition => input.BallXPosition;
 
         public double BallYPosition => input.BallYPosition;

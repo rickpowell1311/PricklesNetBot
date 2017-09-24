@@ -32,6 +32,8 @@ namespace PricklesNetBot
         {
             private readonly RocketLeagueHandler handler;
 
+            private static Object locker = new Object();
+
             public Handler(RocketLeagueHandler handler)
             {
                 this.handler = handler;
@@ -39,9 +41,11 @@ namespace PricklesNetBot
 
             protected override void OnMessage(MessageEventArgs e)
             {
-                var response = handler.Handle(e.RawData);
-
-                Send(response);
+                lock (locker)
+                {
+                    var response = handler.Handle(e.RawData);
+                    Send(response);
+                }
             }
         }
     }
