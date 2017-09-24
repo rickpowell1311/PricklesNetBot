@@ -1,47 +1,38 @@
-﻿using PricklesNetBot.Domain.Manoeuvres;
-using System.Collections.Generic;
-using PricklesNetBot.Domain.Data;
+﻿using PricklesNetBot.Domain.Data;
 using PricklesNetBot.Domain.IO;
+using PricklesNetBot.Domain.Data.Extensions;
+using PricklesNetBot.Domain.Manoeuvres;
 
 namespace PricklesNetBot.Domain.Decision.Tactical
 {
     public class GoForTheBall : ITacticalDecision
     {
         private IManoeuvre currentManoeuvre;
-        private Stack<IManoeuvre> manoeuvres;
-
-        public bool Finished => currentManoeuvre == null && manoeuvres.Count == 0;
 
         public GoForTheBall()
         {
-            manoeuvres = new Stack<IManoeuvre>();
-            manoeuvres.Push(new TurnTowardsTheBall());
         }
 
         public OutputParameters Work(PlayerData playerData, BallData ballData)
         {
-            if (currentManoeuvre != null)
+            if (!playerData.IsFacingTheBall(ballData))
             {
-                if (currentManoeuvre.HasFinished(playerData, ballData))
+                if (!(currentManoeuvre is TurnTowardsTheBall))
                 {
-                    currentManoeuvre = null;
+                    currentManoeuvre = new TurnTowardsTheBall();
+                    currentManoeuvre.Start(playerData, ballData);
                 }
-                else
-                {
-                    return currentManoeuvre.Output;
-                }
-            }
-
-            if (!Finished)
-            {
-                currentManoeuvre = manoeuvres.Pop();
-                currentManoeuvre.Start(playerData, ballData);
-                return currentManoeuvre.Output;
             }
             else
             {
-                return OutputParameters.Default;
+                if (!(currentManoeuvre is DriveStraight))
+                {
+                    currentManoeuvre = new DriveStraight();
+                    currentManoeuvre.Start(playerData, ballData);
+                }
             }
+
+            return currentManoeuvre.Output;
         }
     }
 }
