@@ -51,9 +51,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Domain\Data\Extensions\PlayerDataExtensions.cs" />
     <Compile Include="Domain\Decision\Tactical\ITacticalDecision.cs" />
+    <Compile Include="Domain\Manoeuvres\DriveStraight.cs" />
     <Compile Include="Domain\Manoeuvres\IManoeuvre.cs" />
-    <Compile Include="Domain\Manoeuvres\ManoeuvreProgress.cs" />
     <Compile Include="Domain\Manoeuvres\TurnTowardsTheBall.cs" />
     <Compile Include="Domain\PlayerType.cs" />
     <Compile Include="Domain\Data\BallData.cs" />

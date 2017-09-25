@@ -4,12 +4,12 @@ namespace PricklesNetBot.Domain.IO
 {
     public class OutputParameters
     {
-        private readonly Turn turn;
-        private readonly ForwardBackwardRotation fbRotation;
-        private readonly Accelerate accelerate;
-        private readonly bool jump;
-        private readonly bool boost;
-        private readonly bool powerslide;
+        public Turn Turn { get; }
+        public ForwardBackwardRotation FbRotation { get; }
+        public Accelerate Accelerate { get; }
+        public bool Jump { get; }
+        public bool Boost { get; }
+        public bool Powerslide { get; }
 
         public static OutputParameters Default
         {
@@ -29,24 +29,24 @@ namespace PricklesNetBot.Domain.IO
         {
             return new List<int>
             {
-                (int)turn,
-                (int)fbRotation,
-                accelerate.ForwardValue,
-                accelerate.BackwardValue,
-                jump ? 1 : 0,
-                boost ? 1 : 0,
-                powerslide ? 1 : 0
+                (int)Turn,
+                (int)FbRotation,
+                Accelerate.ForwardValue,
+                Accelerate.BackwardValue,
+                Jump ? 1 : 0,
+                Boost ? 1 : 0,
+                Powerslide ? 1 : 0
             }.ToArray();
         }
 
         public OutputParameters(Turn turn, ForwardBackwardRotation fbRotation, Accelerate accelerate, bool jump, bool boost, bool powerslide)
         {
-            this.turn = turn;
-            this.fbRotation = fbRotation;
-            this.accelerate = accelerate;
-            this.jump = jump;
-            this.boost = boost;
-            this.powerslide = powerslide;
+            this.Turn = turn;
+            this.FbRotation = fbRotation;
+            this.Accelerate = accelerate;
+            this.Jump = jump;
+            this.Boost = boost;
+            this.Powerslide = powerslide;
         }
     }
 }

@@ -6,30 +6,19 @@ namespace PricklesNetBot.Domain.Decision
 {
     public class Decider
     {
-        private ITacticalDecision currentDecision;
+        private ITacticalDecision decision;
 
         public Decider()
         {
-            currentDecision = new GoForTheBall();
+            decision = new GoForTheBall();
         }
 
         public OutputParameters MakeMove(InputParameters input)
         {
             // TODO: Make current decision
-
-            if (!currentDecision.Finished)
-            {
-                return currentDecision.Work(
-                new PlayerData(input),
-                new BallData(input));
-            }
-            else
-            {
-                currentDecision = new GoForTheBall();
-                return currentDecision.Work(
+            return decision.Work(
                     new PlayerData(input),
                     new BallData(input));
-            }
         }
     }
 }
