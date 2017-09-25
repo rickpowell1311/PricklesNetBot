@@ -20,7 +20,6 @@ namespace PricklesNetBot.Domain.Decision.Tactical
                 if (!(currentManoeuvre is TurnTowardsTheBall))
                 {
                     currentManoeuvre = new TurnTowardsTheBall();
-                    currentManoeuvre.Start(playerData, ballData);
                 }
             }
             else
@@ -28,11 +27,10 @@ namespace PricklesNetBot.Domain.Decision.Tactical
                 if (!(currentManoeuvre is DriveStraight))
                 {
                     currentManoeuvre = new DriveStraight();
-                    currentManoeuvre.Start(playerData, ballData);
                 }
             }
 
-            return currentManoeuvre.Output;
+            return currentManoeuvre.Execute(playerData, ballData);
         }
     }
 }

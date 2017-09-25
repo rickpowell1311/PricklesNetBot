@@ -5,8 +5,6 @@ namespace PricklesNetBot.Domain.Manoeuvres
 {
     public interface IManoeuvre
     {
-        OutputParameters Output { get; }
-
-        void Start(PlayerData forPlayer, BallData ballData);
+        OutputParameters Execute(PlayerData forPlayer, BallData ballData);
     }
 }
