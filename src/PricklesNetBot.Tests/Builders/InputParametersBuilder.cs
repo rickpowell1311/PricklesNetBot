@@ -33,13 +33,25 @@ namespace PricklesNetBot.Tests.Builders
         private double blue1Boost;
         private double orange1Boost;
 
-        private double blue1Roll;
-        private double blue1Pitch;
-        private double blue1Yaw;
+        private double blue1rotation1;
+        private double blue1rotation2;
+        private double blue1rotation3;
+        private double blue1rotation4;
+        private double blue1rotation5;
+        private double blue1rotation6;
+        private double blue1rotation7;
+        private double blue1rotation8;
+        private double blue1rotation9;
 
-        private double orange1Roll;
-        private double orange1Pitch;
-        private double orange1Yaw;
+        private double orange1rotation1;
+        private double orange1rotation2;
+        private double orange1rotation3;
+        private double orange1rotation4;
+        private double orange1rotation5;
+        private double orange1rotation6;
+        private double orange1rotation7;
+        private double orange1rotation8;
+        private double orange1rotation9;
 
         private double currentPlayer;
 
@@ -47,74 +59,47 @@ namespace PricklesNetBot.Tests.Builders
         {
             return new InputParameters(new[]
             {
-                ballYPosition,
                 ballXPosition,
+                ballYPosition,
                 ballZPosition,
                 ballXVelocity,
-                ballZVelocity,
                 ballYVelocity,
-                blue1YPosition,
+                ballZVelocity,
                 blue1XPosition,
+                blue1YPosition,
                 blue1ZPosition,
-                orange1YPosition,
                 orange1XPosition,
+                orange1YPosition,
                 orange1ZPosition,
                 blue1XVelocity,
-                blue1ZVelocity,
                 blue1YVelocity,
+                blue1ZVelocity,
                 orange1XVelocity,
                 orange1YVelocity,
                 orange1ZVelocity,
                 blue1Boost,
                 orange1Boost,
-                blue1Roll,
-                blue1Pitch,
-                blue1Yaw,
-                orange1Roll,
-                orange1Pitch,
-                orange1Yaw,
+                blue1rotation1,
+                blue1rotation2,
+                blue1rotation3,
+                blue1rotation4,
+                blue1rotation5,
+                blue1rotation6,
+                blue1rotation7,
+                blue1rotation8,
+                blue1rotation9,
+                orange1rotation1,
+                orange1rotation2,
+                orange1rotation3,
+                orange1rotation4,
+                orange1rotation5,
+                orange1rotation6,
+                orange1rotation7,
+                orange1rotation8,
+                orange1rotation9,
                 currentPlayer
             });
         }
-
-        /*
-        public double BallXPosition => values[1];
-        public double BallYPosition => values[0];
-        public double BallZPosition => values[2];
-
-        public double BallXVelocity => values[3];
-        public double BallYVelocity => values[5];
-        public double BallZVelocity => values[4];
-
-        public double Blue1XPosition => values[7];
-        public double Blue1YPosition => values[6];
-        public double Blue1ZPosition => values[8];
-
-        public double Orange1XPosition => values[10];
-        public double Orange1YPosition => values[9];
-        public double Orange1ZPosition => values[11];
-
-        public double Blue1XVelocity => values[12];
-        public double Blue1YVelocity => values[14];
-        public double Blue1ZVelocity => values[13];
-
-        public double Orange1XVelocity => values[15];
-        public double Orange1YVelocity => values[16];
-        public double Orange1ZVelocity => values[17];
-
-        public double Blue1Boost => values[18];
-        public double Orange1Boost => values[19];
-
-        public double Blue1Roll => values[20].FromRadiansToDegrees();
-        public double Blue1Pitch => values[21].FromRadiansToDegrees();
-        public double Blue1Yaw => values[22].FromRadiansToDegrees();
-
-        public double Orange1Roll => values[23].FromRadiansToDegrees();
-        public double Orange1Pitch => values[24].FromRadiansToDegrees();
-        public double Orange1Yaw => values[25].FromRadiansToDegrees();
-
-        public PlayerType CurrentPlayer => values[26]
-        */
 
         public void SetCurrentPlayer(PlayerType player)
         {
@@ -183,19 +168,41 @@ namespace PricklesNetBot.Tests.Builders
             }
         }
 
-        public void SetPlayerRotation(PlayerType player, double yawInRadians, double pitchInRadians, double rollInRadians)
+        public void SetPlayerRotation(
+            PlayerType player, 
+            double rotation1,
+            double rotation2,
+            double rotation3,
+            double rotation4,
+            double rotation5,
+            double rotation6,
+            double rotation7,
+            double rotation8,
+            double rotation9)
         {
             switch (player)
             {
                 case PlayerType.Blue1:
-                    blue1Yaw = yawInRadians;
-                    blue1Pitch = pitchInRadians;
-                    blue1Roll = rollInRadians;
+                    blue1rotation1 = rotation1;
+                    blue1rotation2 = rotation2;
+                    blue1rotation3 = rotation3;
+                    blue1rotation4 = rotation4;
+                    blue1rotation5 = rotation5;
+                    blue1rotation6 = rotation6;
+                    blue1rotation7 = rotation7;
+                    blue1rotation8 = rotation8;
+                    blue1rotation9 = rotation9;
                     break;
                 case PlayerType.Orange1:
-                    orange1Yaw = yawInRadians;
-                    orange1Pitch = pitchInRadians;
-                    orange1Roll = rollInRadians;
+                    orange1rotation1 = rotation1;
+                    orange1rotation2 = rotation2;
+                    orange1rotation3 = rotation3;
+                    orange1rotation4 = rotation4;
+                    orange1rotation5 = rotation5;
+                    orange1rotation6 = rotation6;
+                    orange1rotation7 = rotation7;
+                    orange1rotation8 = rotation8;
+                    orange1rotation9 = rotation9;
                     break;
                 default:
                     throw new NotImplementedException();

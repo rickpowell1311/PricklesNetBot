@@ -41,7 +41,14 @@ namespace PricklesNetBot.Domain
             var dotProduct = this.TwoDimensionalDotProductWith(other);
             var lengthsProduct = this.TwoDimensionalLength * other.TwoDimensionalLength;
 
-            return Math.Acos(dotProduct / lengthsProduct).FromRadiansToDegrees();
+            var raw = Math.Acos(dotProduct / lengthsProduct).FromRadiansToDegrees();
+
+            if (this.TwoDimensionalProduct(other) < 0)
+            {
+                raw = 360 - raw;
+            }
+
+            return Math.Round(raw, 6);
         }
     }
 }

@@ -27,7 +27,7 @@ namespace PricklesNetBot.Domain.Data.Extensions
 
         public static Vector Direction(this PlayerData player)
         {
-            var yawRadians = player.Yaw.FromDegreesToRadians();
+            var yawRadians = player.XYAngle.FromDegreesToRadians();
 
             var xLength = Math.Cos(yawRadians);
             var yLength = Math.Sin(yawRadians);

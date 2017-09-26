@@ -103,48 +103,16 @@ namespace PricklesNetBot.Domain.Data
             }
         }
 
-        public double Pitch
+        public double XYAngle
         {
             get
             {
                 switch (input.CurrentPlayer)
                 {
                     case PlayerType.Blue1:
-                        return input.Blue1Pitch;
+                        return new Vector(1, 0, 0).AngleBetween(new Vector(input.Blue1Rotation4, input.Blue1Rotation1, 0));
                     case PlayerType.Orange1:
-                        return input.Orange1Pitch;
-                    default:
-                        throw new NotImplementedException();
-                }
-            }
-        }
-
-        public double Yaw
-        {
-            get
-            {
-                switch (input.CurrentPlayer)
-                {
-                    case PlayerType.Blue1:
-                        return input.Blue1Yaw;
-                    case PlayerType.Orange1:
-                        return input.Orange1Yaw;
-                    default:
-                        throw new NotImplementedException();
-                }
-            }
-        }
-
-        public double Roll
-        {
-            get
-            {
-                switch (input.CurrentPlayer)
-                {
-                    case PlayerType.Blue1:
-                        return input.Blue1Roll;
-                    case PlayerType.Orange1:
-                        return input.Orange1Roll;
+                        return new Vector(1, 0, 0).AngleBetween(new Vector(input.Orange1Rotation4, input.Orange1Rotation1, 0));
                     default:
                         throw new NotImplementedException();
                 }
