@@ -51,17 +51,17 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Domain\Manoeuvres\DriveTowardsTheBallWithBoost.cs" />
+    <Compile Include="Domain\Manoeuvres\TurnTowardsTheBallByPowersliding.cs" />
     <Compile Include="Domain\TwoDimensionalVectorType.cs" />
     <Compile Include="Domain\Angle.cs" />
     <Compile Include="Domain\AngleType.cs" />
     <Compile Include="Domain\Constants\BallConstants.cs" />
     <Compile Include="Domain\Constants\PlayerMovement.cs" />
-    <Compile Include="Domain\Constants\PowerslidingTowardsTheBall.cs" />
     <Compile Include="Domain\Data\Extensions\PlayerExtensions.cs" />
     <Compile Include="Domain\Decision\Tactical\ITacticalDecision.cs" />
     <Compile Include="Domain\Manoeuvres\DriveTowardsTheBall.cs" />
     <Compile Include="Domain\Manoeuvres\IManoeuvre.cs" />
-    <Compile Include="Domain\Manoeuvres\ManoeuvreOutput.cs" />
     <Compile Include="Domain\Manoeuvres\TurnTowardsTheBall.cs" />
     <Compile Include="Domain\PlayerType.cs" />
     <Compile Include="Domain\Data\Ball.cs" />

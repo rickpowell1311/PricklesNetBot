@@ -1,15 +1,16 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace PricklesNetBot.Domain.IO
 {
     public class OutputParameters
     {
-        public Turn Turn { get; }
-        public ForwardBackwardRotation FbRotation { get; }
-        public Accelerate Accelerate { get; }
-        public bool Jump { get; }
-        public bool Boost { get; }
-        public bool Powerslide { get; }
+        public Turn Turn { get; private set; }
+        public ForwardBackwardRotation FbRotation { get; private set; }
+        public Accelerate Accelerate { get; private set; }
+        public bool Jump { get; private set; }
+        public bool Boost { get; private set; }
+        public bool Powerslide { get; private set; }
 
         public static OutputParameters Default
         {
@@ -47,6 +48,16 @@ namespace PricklesNetBot.Domain.IO
             this.Jump = jump;
             this.Boost = boost;
             this.Powerslide = powerslide;
+        }
+
+        public void TogglePowerslide(bool isPowerslideOn)
+        {
+            this.Powerslide = isPowerslideOn;
+        }
+
+        public void ToggleBoost(bool isBoostEnabled)
+        {
+            Boost = isBoostEnabled;
         }
     }
 }

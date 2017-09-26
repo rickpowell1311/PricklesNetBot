@@ -30,7 +30,7 @@ namespace PricklesNetBot.Domain.Decision.Tactical
                 }
             }
 
-            return currentManoeuvre.Execute(player, ball).OutputParameters;
+            return currentManoeuvre.Execute(player, ball);
         }
     }
 }
