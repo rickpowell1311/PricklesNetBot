@@ -51,13 +51,20 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Domain\Data\Extensions\PlayerDataExtensions.cs" />
+    <Compile Include="Domain\TwoDimensionalVectorType.cs" />
+    <Compile Include="Domain\Angle.cs" />
+    <Compile Include="Domain\AngleType.cs" />
+    <Compile Include="Domain\Constants\BallConstants.cs" />
+    <Compile Include="Domain\Constants\PlayerMovement.cs" />
+    <Compile Include="Domain\Constants\PowerslidingTowardsTheBall.cs" />
+    <Compile Include="Domain\Data\Extensions\PlayerExtensions.cs" />
     <Compile Include="Domain\Decision\Tactical\ITacticalDecision.cs" />
-    <Compile Include="Domain\Manoeuvres\DriveStraight.cs" />
+    <Compile Include="Domain\Manoeuvres\DriveTowardsTheBall.cs" />
     <Compile Include="Domain\Manoeuvres\IManoeuvre.cs" />
+    <Compile Include="Domain\Manoeuvres\ManoeuvreOutput.cs" />
     <Compile Include="Domain\Manoeuvres\TurnTowardsTheBall.cs" />
     <Compile Include="Domain\PlayerType.cs" />
-    <Compile Include="Domain\Data\BallData.cs" />
+    <Compile Include="Domain\Data\Ball.cs" />
     <Compile Include="Domain\Decision\Decider.cs" />
     <Compile Include="Domain\Decision\Tactical\GoForTheBall.cs" />
     <Compile Include="Domain\IO\Accelerate.cs" />
@@ -65,9 +72,8 @@
     <Compile Include="Domain\IO\InputParameters.cs" />
     <Compile Include="Domain\IO\OutputParameters.cs" />
     <Compile Include="Domain\IO\Turn.cs" />
-    <Compile Include="Domain\Data\PlayerData.cs" />
+    <Compile Include="Domain\Data\Player.cs" />
     <Compile Include="Domain\Vector.cs" />
-    <Compile Include="Infrastructure\DoubleExtensions.cs" />
     <Compile Include="Infrastructure\PricklesNetBotAutofacModule.cs" />
     <Compile Include="Infrastructure\RocketLeagueInputHandler.cs" />
     <Compile Include="Program.cs" />

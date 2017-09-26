@@ -17,8 +17,8 @@ namespace PricklesNetBot.Domain.Decision
         {
             // TODO: Make current decision
             return decision.Work(
-                    new PlayerData(input),
-                    new BallData(input));
+                    new Player(input),
+                    new Ball(input));
         }
     }
 }

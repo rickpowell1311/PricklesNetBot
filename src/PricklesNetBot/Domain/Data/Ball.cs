@@ -2,11 +2,9 @@
 
 namespace PricklesNetBot.Domain.Data
 {
-    public class BallData
+    public class Ball
     {
         private readonly InputParameters input;
-
-        public const double Diameter = 5;
 
         public double BallXPosition => input.BallXPosition;
 
@@ -20,7 +18,11 @@ namespace PricklesNetBot.Domain.Data
 
         public double BallZVelocity => input.BallZVelocity;
 
-        public BallData(InputParameters input)
+        public Vector Position => new Vector(BallXPosition, BallYPosition, BallZPosition); 
+
+        public Vector Velocity => new Vector(BallXVelocity, BallYVelocity, BallZVelocity);
+
+        public Ball(InputParameters input)
         {
             this.input = input;
         }

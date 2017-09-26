@@ -24,7 +24,8 @@ namespace PricklesNetBot.Tests.Domain.Manoeuvres
             var input = inputBuilder.Build();
 
             var result = new TurnTowardsTheBall()
-                .Execute(new PlayerData(input), new BallData(input));
+                .Execute(new Player(input), new Ball(input))
+                .OutputParameters;
 
             Assert.Equal(Turn.Left, result.Turn);
         }
@@ -43,7 +44,8 @@ namespace PricklesNetBot.Tests.Domain.Manoeuvres
             var input = inputBuilder.Build();
 
             var result = new TurnTowardsTheBall()
-                .Execute(new PlayerData(input), new BallData(input));
+                .Execute(new Player(input), new Ball(input))
+                .OutputParameters;
 
             Assert.Equal(Turn.Right, result.Turn);
         }

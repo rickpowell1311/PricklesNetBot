@@ -5,6 +5,6 @@ namespace PricklesNetBot.Domain.Decision.Tactical
 {
     public interface ITacticalDecision
     {
-        OutputParameters Work(PlayerData playerData, BallData ballData);
+        OutputParameters Work(Player player, Ball ball);
     }
 }

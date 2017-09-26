@@ -3,17 +3,21 @@ using PricklesNetBot.Domain.IO;
 
 namespace PricklesNetBot.Domain.Manoeuvres
 {
-    public class DriveStraight : IManoeuvre
+    public class DriveTowardsTheBall : IManoeuvre
     {
-        public OutputParameters Execute(PlayerData forPlayer, BallData ballData)
+        public ManoeuvreOutput Execute(Player player, Ball ball)
         {
-            return new OutputParameters(
+            var output = new OutputParameters(
                 Turn.None,
                 ForwardBackwardRotation.None,
                 Accelerate.Forward,
                 false,
                 true,
                 false);
+
+            var estimatedCompletionTime = 0; // TODO:
+
+            return new ManoeuvreOutput(output, estimatedCompletionTime);
         }
     }
 }

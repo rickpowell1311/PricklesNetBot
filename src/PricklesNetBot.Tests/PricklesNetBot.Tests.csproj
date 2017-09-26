@@ -54,8 +54,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Domain\AngleTests.cs" />
     <Compile Include="Domain\VectorTests.cs" />
-    <Compile Include="Infrastructure\InfrastructureExtensionsTests.cs" />
     <Compile Include="Domain\Manoeuvres\TurnTowardsTheBallTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Builders\InputParametersBuilder.cs" />

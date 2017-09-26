@@ -3,7 +3,7 @@ using System;
 
 namespace PricklesNetBot.Domain.Data
 {
-    public class PlayerData
+    public class Player
     {
         private readonly InputParameters input;
 
@@ -103,7 +103,7 @@ namespace PricklesNetBot.Domain.Data
             }
         }
 
-        public double XYAngle
+        public Angle XYAngle
         {
             get
             {
@@ -135,7 +135,11 @@ namespace PricklesNetBot.Domain.Data
             }
         }
 
-        public PlayerData(InputParameters input)
+        public Vector Position => new Vector(XPosition, YPosition, ZPosition);
+
+        public Vector Velocity => new Vector(XVelocity, YVelocity, ZVelocity);
+
+        public Player(InputParameters input)
         {
             this.input = input;
         }

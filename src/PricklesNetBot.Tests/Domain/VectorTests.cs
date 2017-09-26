@@ -1,4 +1,5 @@
 ﻿using PricklesNetBot.Domain;
+using System;
 using Xunit;
 
 namespace PricklesNetBot.Tests.Domain
@@ -13,7 +14,7 @@ namespace PricklesNetBot.Tests.Domain
 
             var result = alongXAxis.AngleBetween(vectorPointing315);
 
-            Assert.Equal(315, result);
+            Assert.Equal(315, Math.Round(result.Degrees, 3));
         }
 
         [Fact]
@@ -24,7 +25,7 @@ namespace PricklesNetBot.Tests.Domain
 
             var result = alongXAxis.AngleBetween(vectorPointing45);
 
-            Assert.Equal(45, result);
+            Assert.Equal(45, Math.Round(result.Degrees, 3));
         }
     }
 }

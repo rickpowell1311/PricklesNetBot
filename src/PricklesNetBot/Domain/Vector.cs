@@ -1,5 +1,4 @@
-﻿using PricklesNetBot.Infrastructure;
-using System;
+﻿using System;
 
 namespace PricklesNetBot.Domain
 {
@@ -26,6 +25,11 @@ namespace PricklesNetBot.Domain
             Z = z;
         }
 
+        public Vector Add(Vector other)
+        {
+            return new Vector(X - other.X, Y - other.Y, Z - other.Z);
+        }
+
         public double TwoDimensionalProduct(Vector other)
         {
             return X * other.Y - Y * other.X;
@@ -36,19 +40,24 @@ namespace PricklesNetBot.Domain
             return X * other.X + Y * other.Y;
         }
 
-        public double AngleBetween(Vector other)
+        public Angle ShortestAngleBetween(Vector other)
         {
             var dotProduct = this.TwoDimensionalDotProductWith(other);
             var lengthsProduct = this.TwoDimensionalLength * other.TwoDimensionalLength;
 
-            var raw = Math.Acos(dotProduct / lengthsProduct).FromRadiansToDegrees();
+            return Angle.FromRadians(Math.Acos(dotProduct / lengthsProduct));
+        }
+
+        public Angle AngleBetween(Vector other)
+        {
+            var angle = this.ShortestAngleBetween(other);
 
             if (this.TwoDimensionalProduct(other) < 0)
             {
-                raw = 360 - raw;
+                angle = angle.Invert();
             }
 
-            return Math.Round(raw, 6);
+            return angle;
         }
     }
 }
