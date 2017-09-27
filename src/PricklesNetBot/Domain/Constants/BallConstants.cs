@@ -2,6 +2,6 @@
 {
     public static class BallConstants
     {
-        public static double Diameter = 5;
+        public static double Diameter = 5; 
     }
 }

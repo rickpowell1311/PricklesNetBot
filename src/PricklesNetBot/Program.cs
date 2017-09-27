@@ -1,5 +1,6 @@
 ﻿using Autofac;
 using PricklesNetBot.Infrastructure;
+using PricklesNetBot.Infrastructure.Inputs;
 using System;
 using WebSocketSharp;
 using WebSocketSharp.Server;
@@ -22,7 +23,20 @@ namespace PricklesNetBot
                 websocketServer.AddWebSocketService("/", () => new Handler(handler));
                 websocketServer.Start();
 
-                Console.ReadKey();
+                while (true)
+                {
+                    Console.WriteLine("Type p to set a property value, or e to exit");
+                    var response = Console.ReadLine().ToLowerInvariant();
+
+                    if (response == "p")
+                    {
+                        ChangeConstants.Go();
+                    }
+                    else if (response == "e")
+                    {
+                        break;
+                    }
+                }
 
                 websocketServer.Stop();
             }

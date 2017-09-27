@@ -74,6 +74,7 @@
     <Compile Include="Domain\IO\Turn.cs" />
     <Compile Include="Domain\Data\Player.cs" />
     <Compile Include="Domain\Vector.cs" />
+    <Compile Include="Infrastructure\Inputs\ChangeConstants.cs" />
     <Compile Include="Infrastructure\PricklesNetBotAutofacModule.cs" />
     <Compile Include="Infrastructure\RocketLeagueInputHandler.cs" />
     <Compile Include="Program.cs" />
