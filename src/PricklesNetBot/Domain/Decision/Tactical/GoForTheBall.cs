@@ -11,6 +11,7 @@ namespace PricklesNetBot.Domain.Decision.Tactical
 
         public GoForTheBall()
         {
+            currentManoeuvre = new DriveTowardsTheBall();
         }
 
         public OutputParameters Work(Player player, Ball ball)
