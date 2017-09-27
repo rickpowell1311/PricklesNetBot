@@ -8,7 +8,7 @@ namespace PricklesNetBot.Domain.Manoeuvres
     {
         public virtual OutputParameters Execute(Player player, Ball ball)
         {
-            var playerDirection = player.XYDirection();
+            var playerDirection = player.XYAngle.As2dVector(TwoDimensionalVectorType.XY);
             var playerToBallDirection = player.DirectionToTheBall(ball);
 
             var turnDirection = playerDirection.TwoDimensionalProduct(playerToBallDirection) < 0

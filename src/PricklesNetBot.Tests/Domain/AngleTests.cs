@@ -29,5 +29,19 @@ namespace PricklesNetBot.Tests.Domain
 
             Assert.Equal(180, Math.Round(result.Degrees, 3));
         }
+
+        [Fact]
+        public void Angle_OfZeroDegrees_AsVector_ReturnsOneZeroZeroForXYPlane()
+        {
+            var result = Angle.FromDegrees(0).As2dVector(TwoDimensionalVectorType.XY);
+            Assert.Equal(result, new Vector(1, 0, 0));
+        }
+
+        [Fact]
+        public void Angle_OfNinetyDegrees_AsVector_ReturnsZeroOneZeroForXYPlane()
+        {
+            var result = Angle.FromDegrees(90).As2dVector(TwoDimensionalVectorType.XY);
+            Assert.Equal(result, new Vector(0, 1, 0));
+        }
     }
 }

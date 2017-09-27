@@ -2,7 +2,7 @@
 
 namespace PricklesNetBot.Domain
 {
-    public class Vector
+    public class Vector : IEquatable<Vector>
     {
         public double X { get; }
 
@@ -25,7 +25,7 @@ namespace PricklesNetBot.Domain
             Z = z;
         }
 
-        public Vector Add(Vector other)
+        public Vector Subtract(Vector other)
         {
             return new Vector(X - other.X, Y - other.Y, Z - other.Z);
         }
@@ -58,6 +58,13 @@ namespace PricklesNetBot.Domain
             }
 
             return angle;
+        }
+
+        public bool Equals(Vector other)
+        {
+            return X == other.X
+                && Y == other.Y
+                && Z == other.Z;
         }
     }
 }

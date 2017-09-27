@@ -11,25 +11,24 @@ namespace PricklesNetBot.Domain.Data.Extensions
             var toleranceAdjacent = player.DirectionToTheBall(ball).TwoDimensionalLength;
             var toleranceAngle = Angle.FromRadians(Math.Atan(toleranceOpposite / toleranceAdjacent));
 
-            var targetTwoDimensionalAngle =
-                player.XYDirection().AngleBetween(player.DirectionToTheBall(ball));
+            var targetTwoDimensionalAngle = player
+                .XYAngle
+                .As2dVector(TwoDimensionalVectorType.XY)
+                .AngleBetween(player.DirectionToTheBall(ball));
 
             return targetTwoDimensionalAngle.IsLessThan(toleranceAngle);
         }
 
         public static Vector DirectionToTheBall(this Player player, Ball ball)
         {
-            return ball.Position.Add(player.Position);
-        }
-
-        public static Vector XYDirection(this Player player)
-        {
-            return player.XYAngle.As2dVector(TwoDimensionalVectorType.XY);
+            return ball.Position.Subtract(player.Position);
         }
 
         public static Angle AngleBetweenPlayerDirectionAndTheBall(this Player player, Ball ball)
         {
-            var playerDirection = player.XYDirection();
+            var playerDirection = player
+                .XYAngle
+                .As2dVector(TwoDimensionalVectorType.XY);
             var playerToBallDirection = player.DirectionToTheBall(ball);
             return playerDirection.AngleBetween(playerToBallDirection);
         }

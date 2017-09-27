@@ -56,11 +56,11 @@ namespace PricklesNetBot.Domain
             switch (vectorType)
             {
                 case TwoDimensionalVectorType.XY:
-                    return new Vector(Math.Sin(Radians), Math.Cos(Radians), 0);
+                    return new Vector(Math.Round(Math.Cos(Radians), 3), Math.Round(Math.Sin(Radians), 3), 0);
                 case TwoDimensionalVectorType.XZ:
-                    return new Vector(Math.Sin(Radians), 0, Math.Cos(Radians));
+                    return new Vector(Math.Round(Math.Cos(Radians), 3), 0, Math.Round(Math.Sin(Radians), 3));
                 case TwoDimensionalVectorType.YZ:
-                    return new Vector(0, Math.Sin(Radians), Math.Cos(Radians));
+                    return new Vector(0, Math.Round(Math.Cos(Radians)), Math.Round(Math.Sin(Radians)));
                 default:
                     throw new NotImplementedException();
             }
