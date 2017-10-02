@@ -12,7 +12,7 @@ namespace PricklesNetBot.Tests.Domain
             var alongXAxis = new Vector(1, 0, 0);
             var vectorPointing315 = new Vector(1, -1, 0);
 
-            var result = alongXAxis.AngleBetween(vectorPointing315);
+            var result = alongXAxis.TwoDimensionalAngleBetween(vectorPointing315);
 
             Assert.Equal(315, Math.Round(result.Degrees, 3));
         }
@@ -23,7 +23,7 @@ namespace PricklesNetBot.Tests.Domain
             var alongXAxis = new Vector(1, 0, 0);
             var vectorPointing45 = new Vector(1, 1, 0);
 
-            var result = alongXAxis.AngleBetween(vectorPointing45);
+            var result = alongXAxis.TwoDimensionalAngleBetween(vectorPointing45);
 
             Assert.Equal(45, Math.Round(result.Degrees, 3));
         }

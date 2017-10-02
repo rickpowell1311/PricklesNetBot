@@ -19,14 +19,14 @@ namespace PricklesNetBot.Tests.Domain.Manoeuvres
             // Car is facing 45 degrees to the right of the ball
             inputBuilder.SetCurrentPlayer(PlayerType.Blue1);
             inputBuilder.SetPlayerPosition(PlayerType.Blue1, new Vector(50, 0, 0));
-            inputBuilder.SetPlayerRotation(PlayerType.Blue1, 1, 0, 0, 1, 0, 0, 0, 0, 0);
+            inputBuilder.SetPlayerRotation(PlayerType.Blue1, 1, 0, 0, 0.5, 0, 0, 0, 0, 0);
 
             var input = inputBuilder.Build();
 
             var result = new TurnTowardsTheBall()
                 .Execute(new Player(input), new Ball(input));
 
-            Assert.Equal(Turn.Left, result.Turn);
+            Assert.Equal(Turn.FullLeft.Value, result.Turn.Value);
         }
 
         [Fact]
@@ -35,17 +35,17 @@ namespace PricklesNetBot.Tests.Domain.Manoeuvres
             var inputBuilder = new InputParametersBuilder();
             inputBuilder.SetBallPosition(new Vector(0, 0, 0));
 
-            // Car is facing 45 degrees to the left of the ball
+            // Car is facing > 45 degrees to the left of the ball
             inputBuilder.SetCurrentPlayer(PlayerType.Blue1);
             inputBuilder.SetPlayerPosition(PlayerType.Blue1, new Vector(50, 0, 0));
-            inputBuilder.SetPlayerRotation(PlayerType.Blue1, -1, 0, 0, -1, 0, 0, 0, 0, 0);
+            inputBuilder.SetPlayerRotation(PlayerType.Blue1, -1, 0, 0, -0.5, 0, 0, 0, 0, 0);
 
             var input = inputBuilder.Build();
 
             var result = new TurnTowardsTheBall()
                 .Execute(new Player(input), new Ball(input));
 
-            Assert.Equal(Turn.Right, result.Turn);
+            Assert.Equal(Turn.FullRight.Value, result.Turn.Value);
         }
     }
 }

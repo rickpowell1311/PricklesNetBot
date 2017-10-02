@@ -110,9 +110,9 @@ namespace PricklesNetBot.Domain.Data
                 switch (input.CurrentPlayer)
                 {
                     case PlayerType.Blue1:
-                        return new Vector(1, 0, 0).AngleBetween(new Vector(input.Blue1Rotation4, input.Blue1Rotation1, 0));
+                        return new Vector(1, 0, 0).TwoDimensionalAngleBetween(new Vector(input.Blue1Rotation4, input.Blue1Rotation1, 0));
                     case PlayerType.Orange1:
-                        return new Vector(1, 0, 0).AngleBetween(new Vector(input.Orange1Rotation4, input.Orange1Rotation1, 0));
+                        return new Vector(1, 0, 0).TwoDimensionalAngleBetween(new Vector(input.Orange1Rotation4, input.Orange1Rotation1, 0));
                     default:
                         throw new NotImplementedException();
                 }

@@ -81,6 +81,16 @@ namespace PricklesNetBot.Domain
             return Radians == other.Radians;
         }
 
+        public Angle Multiply(double factor)
+        {
+            return FromDegrees(Degrees * factor);
+        }
+
+        public Angle Subtract(Angle other)
+        {
+            return FromDegrees(Degrees - other.Degrees);
+        }
+
         private double FromDegreesToRadians(double val)
         {
             var raw = (val * Math.PI) / 180;

@@ -30,6 +30,16 @@ namespace PricklesNetBot.Domain
             return new Vector(X - other.X, Y - other.Y, Z - other.Z);
         }
 
+        public Vector Add(Vector other)
+        {
+            return new Vector(X + other.X, Y + other.Y, Z + other.Z);
+        }
+
+        public Vector ScalarMultiply(double factor)
+        {
+            return new Vector(X * factor, Y * factor, Z * factor);
+        }
+
         public double TwoDimensionalProduct(Vector other)
         {
             return X * other.Y - Y * other.X;
@@ -40,7 +50,7 @@ namespace PricklesNetBot.Domain
             return X * other.X + Y * other.Y;
         }
 
-        public Angle ShortestAngleBetween(Vector other)
+        public Angle TwoDimensionalShortestAngleBetween(Vector other)
         {
             var dotProduct = this.TwoDimensionalDotProductWith(other);
             var lengthsProduct = this.TwoDimensionalLength * other.TwoDimensionalLength;
@@ -48,9 +58,9 @@ namespace PricklesNetBot.Domain
             return Angle.FromRadians(Math.Acos(dotProduct / lengthsProduct));
         }
 
-        public Angle AngleBetween(Vector other)
+        public Angle TwoDimensionalAngleBetween(Vector other)
         {
-            var angle = this.ShortestAngleBetween(other);
+            var angle = this.TwoDimensionalShortestAngleBetween(other);
 
             if (this.TwoDimensionalProduct(other) < 0)
             {

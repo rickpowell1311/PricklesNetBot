@@ -30,8 +30,8 @@ namespace PricklesNetBot.Domain.IO
         {
             return new List<int>
             {
-                (int)Turn,
-                (int)FbRotation,
+                Turn.Value,
+                FbRotation.Value,
                 Accelerate.ForwardValue,
                 Accelerate.BackwardValue,
                 Jump ? 1 : 0,

@@ -2,10 +2,14 @@
 
 namespace PricklesNetBot.Domain.Constants
 {
-    public class PlayerMovement
+    public static class PlayerMovement
     {
-        public double TurnRadiansPerSecondAtConstantVelocity = Math.PI;
+        public static double TurnSharpAngleCutoffRadians = Math.PI / 8;
 
-        public double TurnRadiansPerSecondPerSecondWhilstPowersliding = 2 * Math.PI;
+        public static double SecondFlipDelay = 100;
+
+        public static double LowerAxisDeadzone = 15200;
+
+        public static double UpperAxisDeadzone = 17000;
     }
 }

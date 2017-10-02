@@ -11,26 +11,30 @@ namespace PricklesNetBot.Domain.Decision.Tactical
 
         public GoForTheBall()
         {
-            currentManoeuvre = new DriveTowardsTheBall();
+            currentManoeuvre = new TurnTowardsTheBall();
         }
 
         public OutputParameters Work(Player player, Ball ball)
         {
-            if (currentManoeuvre is TurnTowardsTheBall)
+            if (currentManoeuvre is DodgeTowardsTheBall)
             {
-                if (player.IsFacingTheBall(ball, 0))
-                {
-                    currentManoeuvre = new DriveTowardsTheBall();
-                }
-            }
-            else if (currentManoeuvre is DriveTowardsTheBall)
-            {
-                if (!player.IsFacingTheBall(ball, 100))
+                if (((DodgeTowardsTheBall)currentManoeuvre).IsComplete)
                 {
                     currentManoeuvre = new TurnTowardsTheBall();
                 }
             }
-
+            else if (currentManoeuvre != new TurnTowardsTheBall())
+            {
+                if (player.IsNearToTheBall(ball))
+                {
+                    currentManoeuvre = new DodgeTowardsTheBall();
+                }
+                else
+                {
+                    currentManoeuvre = new TurnTowardsTheBall();
+                }
+            }
+              
             return currentManoeuvre.Execute(player, ball);
         }
     }
