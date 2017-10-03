@@ -57,10 +57,19 @@ namespace PricklesNetBot.Domain.Data.Extensions
 
             Func<Angle, double> solutionForTime = (Angle angle) =>
             {
-                var sinPlusCosAngle = Math.Sin(angle.Radians) + Math.Sin(angle.Radians);
+                var unityVectorAngle = new Vector(Math.Cos(angle.Radians), Math.Sin(angle.Radians), 0);
+                var numerator = player.Position.Subtract(ball.Position).TwoDimensionalLength;
 
-                return player.Position.Subtract(ball.Position).TwoDimensionalLength
-                    / (ball.Velocity.Subtract(player.Velocity.ScalarMultiply(sinPlusCosAngle))).TwoDimensionalLength;
+                // There will be no solution over a right angle difference between ball velocity and car velocity
+                var angleBetweenBallVelocityAndCarVelocity = ball.Velocity.TwoDimensionalAngleBetween(unityVectorAngle);
+                if (angleBetweenBallVelocityAndCarVelocity.IsLessThan(Angle.FromDegrees(90))
+                    || angleBetweenBallVelocityAndCarVelocity.IsMoreThan(Angle.FromDegrees(270)))
+                {
+                    return player.Position.Subtract(ball.Position).TwoDimensionalLength
+                    / ball.Velocity.Subtract(unityVectorAngle.ScalarMultiply(player.Velocity.TwoDimensionalLength)).TwoDimensionalLength;
+                }
+
+                return double.PositiveInfinity;
             };
 
             var solutions = new List<Tuple<Angle, double>>();
@@ -87,11 +96,11 @@ namespace PricklesNetBot.Domain.Data.Extensions
 
                 var toleranceAngle = player.ToleranceAngleForTarget(distanceFromTargetVector);
 
-                var angle = bestSolution.Item1;
+                var targetAngle = bestSolution.Item1.Subtract(player.XYAngle);
 
-                if (angle.IsMoreThan(toleranceAngle))
+                if (targetAngle.IsMoreThan(toleranceAngle))
                 {
-                    bool turnRight = angle.Radians > Math.PI;
+                    bool turnRight = targetAngle.Radians > Math.PI;
 
                     return turnRight ? Turn.FullRight : Turn.FullLeft;
                 }
