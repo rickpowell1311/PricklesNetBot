@@ -36,8 +36,7 @@ namespace PricklesNetBot.Domain.Data.Extensions
 
         public static Turn TurnTowardsPredictedBallPosition(this Player player, Ball ball)
         {
-            /* We need to find a solution for the time it will take to reach the ball 
-             * and the angle the car should travel at, given the ball position and velocity
+            /* Taken from http://jaran.de/goodbits/2011/07/17/calculating-an-intercept-course-to-a-target-with-constant-direction-and-velocity-in-a-2-dimensional-plane/
              * 
              * Vb = Velocity of the ball
              * Pb = Position of the ball
@@ -46,72 +45,48 @@ namespace PricklesNetBot.Domain.Data.Extensions
              * θ = Disired car direction
              * t = time
              * 
-             * Pc + tVc(sinθ + cosθ) = Pb + Vbt
-             * Pc - Pb = Vbt - tVc(sinθ + cosθ)
-             * Pc - Pb = t(Vb - Vc(sinθ + cosθ))
-             * t = Pc - Pb / (Vb - Vc(sinθ + cosθ))
+             * t = -h2/h1 +/- root((h2/h1)^2 - h3/h1)
              * 
-             * Try all 360 degrees angles and take the lowest possible positive t (if exists)
-             * 
+             * where    h1 = Vbx^2 + Vby^2 - |Vc|^2,
+             *          h2 = (Pbx - Pcx)Vbx + (Pbx - Pcy)Vby
+             *          h3 = |Pbx - Pcx|^2 + |Pby - Pcy|^2
+             *
+             * Unless h1 = 0, in which case t = -h3/2h2
              */
 
-            Func<Angle, double> solutionForTime = (Angle angle) =>
+            var h1 = Math.Round(Math.Pow(ball.Velocity.X, 2) + Math.Pow(ball.Velocity.Y, 2) - Math.Pow(ball.Velocity.TwoDimensionalLength, 2), 3);
+            var h2 = Math.Round(ball.Velocity.X * (ball.Position.X - player.Position.X) + ball.Velocity.Y * (ball.Position.Y - player.Position.Y), 3);
+            var h3 = Math.Round(Math.Pow(ball.Position.X - player.Position.X, 2) + Math.Pow(ball.Position.Y - player.Position.Y, 2), 3);
+
+            double t = -1;
+            if (h1 == 0)
             {
-                var unityVectorAngle = new Vector(Math.Cos(angle.Radians), Math.Sin(angle.Radians), 0);
-                var numerator = player.Position.Subtract(ball.Position).TwoDimensionalLength;
-
-                // There will be no solution over a right angle difference between ball velocity and car velocity
-                var angleBetweenBallVelocityAndCarVelocity = ball.Velocity.TwoDimensionalAngleBetween(unityVectorAngle);
-                if (angleBetweenBallVelocityAndCarVelocity.IsLessThan(Angle.FromDegrees(90))
-                    || angleBetweenBallVelocityAndCarVelocity.IsMoreThan(Angle.FromDegrees(270)))
-                {
-                    return player.Position.Subtract(ball.Position).TwoDimensionalLength
-                    / ball.Velocity.Subtract(unityVectorAngle.ScalarMultiply(player.Velocity.TwoDimensionalLength)).TwoDimensionalLength;
-                }
-
-                return double.PositiveInfinity;
-            };
-
-            var solutions = new List<Tuple<Angle, double>>();
-            for (int i = 0; i < 360; i++)
-            {
-                var angle = Angle.FromDegrees(i);
-                var solution = solutionForTime(angle);
-
-                if (solution > 0 && !double.IsInfinity(solution))
-                {
-                    solutions.Add(new Tuple<Angle, double>(angle, solution));
-                }
-            }
-
-            var bestSolution = solutions
-                .OrderBy(t => t.Item2)
-                .FirstOrDefault();
-
-            if (bestSolution != null)
-            {
-                var distanceFromTargetVector = bestSolution.Item1
-                    .As2dVector(TwoDimensionalVectorType.XY)
-                    .ScalarMultiply(bestSolution.Item2 * player.Velocity.TwoDimensionalLength);
-
-                var toleranceAngle = player.ToleranceAngleForTarget(distanceFromTargetVector);
-
-                var targetAngle = bestSolution.Item1.Subtract(player.XYAngle);
-
-                if (targetAngle.IsMoreThan(toleranceAngle))
-                {
-                    bool turnRight = targetAngle.Radians > Math.PI;
-
-                    return turnRight ? Turn.FullRight : Turn.FullLeft;
-                }
-                else
-                {
-                    return Turn.None;
-                }
+                t = -h3 / (2 * h2);
             }
             else
             {
-                return player.TurnTowardsPosition(ball.Position);
+                var t1 = -h2 + Math.Pow(Math.Pow(h2 / h1, 2) - h3 / h1, 0.5);
+                var t2 = -h3 - Math.Pow(Math.Pow(h2 / h1, 2) - h3 / h1, 0.5);
+
+                t = t1 > 0 ? t1 : t2;
+            }
+
+            var pointOfInterception = new Vector(ball.Position.X + t * ball.Velocity.X, ball.Position.Y + t * ball.Velocity.Y, 0);
+            var targetVector = pointOfInterception.Subtract(player.Position);
+            var targetAngle = player.XYAngle.As2dVector(TwoDimensionalVectorType.XY)
+                .TwoDimensionalAngleBetween(targetVector);
+
+            var toleranceAngle = player.ToleranceAngleForTarget(targetVector);
+
+            if (targetAngle.IsMoreThan(toleranceAngle))
+            {
+                bool turnRight = targetAngle.Radians > Math.PI;
+
+                return turnRight ? Turn.FullRight : Turn.FullLeft;
+            }
+            else
+            {
+                return Turn.None;
             }
         }
 
